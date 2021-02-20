@@ -20,8 +20,10 @@ int solution(int n, vector<int> lost, vector<int> reserve) {
     for(int i =0;i<reserve.size();i++){
         if(answer == n)
             break;
+        
         if(reserve[i] == 0)
             continue;
+        
         for(int j =0;j<lost.size();j++){
             if(lost[j] == 0)
                 continue;
