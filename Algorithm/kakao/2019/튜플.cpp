@@ -29,12 +29,10 @@ vector<int> solution(string s) {
                 tmp.clear();
             }
         }
-        else if(check && s[i] == ','){
-            if(tmp.size()){
-                int tmp_num = stoi(tmp);
-                cnt[tmp_num]++;
-                tmp.clear();
-            }
+        else if(check && s[i] == ',' && tmp.size()){
+            int tmp_num = stoi(tmp);
+            cnt[tmp_num]++;
+            tmp.clear();
         }
         else{
             tmp+=s[i];
