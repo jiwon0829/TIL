@@ -5,15 +5,12 @@ using namespace std;
 
 int solution(vector<int> stones, int k) {
     int answer = 0;
+    int chk = (int)stones.size();
     
     while(true){
-        for(int i=0;i<stones.size();i++){
-            if(stones[i])
-                break;
-            else if(i==stones.size()-1)
-                return answer;
-        }
-
+        if(!chk)
+            return answer;
+        
         for(int i=0;;i++){
             if(i > stones.size()-1){
                 answer++;
@@ -31,6 +28,8 @@ int solution(vector<int> stones, int k) {
                 }
                 else{
                     stones[i+j]--;
+                    if(!stones[i+j])
+                        chk--;
                     i+=j;break;
                 }
             }
