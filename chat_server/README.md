@@ -42,6 +42,7 @@
       EPOLL_CTL_DEL | 기존 파일 디스크립터를 관심 목록에서 삭제
       
       epoll_event 구조체<br>
+      
         ```cpp
         struct epoll_event{
           uint32_t events;  //epoll 이벤트(비트 마스트)
