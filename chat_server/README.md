@@ -43,7 +43,7 @@
       
       epoll_event 구조체<br>
       
-        ```cpp
+       ```cpp
         struct epoll_event{
           uint32_t events;  //epoll 이벤트(비트 마스트)
           epoll_data_t data;   //사용자 데이터
@@ -55,7 +55,7 @@
           uint32_t u32;
           uint64_t u64;
         }epoll_data_t;
-        ```
+       ```
       
   + epoll_wait() 함수
       ```cpp
