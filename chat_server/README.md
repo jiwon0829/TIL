@@ -30,6 +30,7 @@
   + epoll_ctl() 함수
       ```cpp
       #include <sys/epoll.h>
+      
       int epoll_ctl(int epfd, int op, int fd, struct epoll_event *ev);
       ```
       성공하면 0을 리턴하고, 에러가 발생하면 -1을 리턴<br>
@@ -40,7 +41,7 @@
       EPOLL_CTL_MOD | 기존 파일 디스크립터를 수정
       EPOLL_CTL_DEL | 기존 파일 디스크립터를 관심 목록에서 삭제
       
-      epoll_event 구조체
+      epoll_event 구조체<br>
         ```cpp
         struct epoll_event{
           uint32_t events;  //epoll 이벤트(비트 마스트)
@@ -58,6 +59,7 @@
   + epoll_wait() 함수
       ```cpp
       #include <sys/epoll.h>
+      
       int epoll_wait(int edfd, struct epoll_event *evlist, int maxevents, int timeout);
       ```
       성공하면 준비된 파일 디스크립터 수 리턴, 타임아웃인 경우 0을 리턴, 에러가 발생하면 -1을 리턴<br>
@@ -68,7 +70,8 @@
       -1 | 
       0 | 
       0보다 큰 값 |
-      epoll events 필드 가능한 비트 마스크
+      
+      epoll events 필드 가능한 비트 마스크 
       비트 | 입력 | 리턴 | 설명
       | ----- | --- | --- | ---------- |
       EPOLLIN | O | O | 높은 순위 데이터를 제외한 데이터를 읽을 수 있다.
