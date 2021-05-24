@@ -16,6 +16,9 @@
 #include <stdlib.h>
 #include <string.h>
  
+using namespace std;
+
+
 //IP & port
 #define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 8888

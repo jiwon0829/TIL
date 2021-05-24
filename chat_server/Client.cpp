@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Client.h"
 using namespace std;
 
@@ -28,7 +29,7 @@ void Client::Connect(){
 	//서버에 연결
 	if(connect(sock, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) < 0){
 		perror("connect error");
-		eixt(-1);
+		exit(-1);
 	}
 
 
@@ -72,7 +73,7 @@ void Client::Start(){
 
 	Connect();
 
-	pid = for();
+	pid = fork();
 	if(pid < 0){   //자식 프로세스 생성 실패
 		perror("fork error");
 		close(sock);
@@ -108,7 +109,7 @@ void Client::Start(){
 		while(isClientwork){
 			int epoll_events_count = epoll_wait(epfd, events, 2, -1);
 
-			for(int =0;i<epoll_events_count;++i){
+			for(int i=0;i<epoll_events_count;++i){
 				memset(recv_buf, 0, sizeof(recv_buf));
 				//서버에서 온 메시지
 				if(events[i].data.fd == sock){

@@ -1,4 +1,4 @@
-#ifdef CHATROOM_CLIENT_H
+#ifndef CHATROOM_CLIENT_H
 #define CHATROOM_CLIENT_H
 
 #include "Common.h"
@@ -26,3 +26,6 @@ private:
 
 	struct sockaddr_in serverAddr;
 };
+
+
+#endif

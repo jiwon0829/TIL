@@ -13,7 +13,7 @@ Server::Server(){
 
 
 void Server::Init(){
-	cout<<"...Init Server..."<<endl;a
+	cout<<"...Init Server..."<<endl;
 
 	//tcp 연결지향형이고 ipv4 도메인을 위한 소켓을 생성
 	listener = socket(PF_INET, SOCK_STREAM, 0);
@@ -68,7 +68,7 @@ int Server::SendBroadcastMessage(int clientfd){
 	char recv_buf[BUF_SIZE];
 	bzero(recv_buf, BUF_SIZE);
 	char send_buf[BUF_SIZE];
-	Msg msg
+	Msg msg;
 	
 
 	cout<<"Read from Client(USER = "<<clientfd<<")"<<endl;
@@ -89,7 +89,8 @@ int Server::SendBroadcastMessage(int clientfd){
 		if(clients_list.size() == 1){
 			memcpy(&msg.content, CAUTION, sizeof(msg.content));
 			bzero(send_buf, BUF_SIZE);
-			memcpy(clientfd, send_buf, sizeof(send_buf), 0);
+			memcpy(send_buf, &msg, sizeof(msg));
+			send(clientfd, send_buf, sizeof(send_buf), 0);
 			return len;
 		}
 
@@ -157,7 +158,7 @@ void Server::Start(){
 				//welcome 메시지 보내기
 				cout<<"welcome message"<<endl;
 				char message[BUF_SIZE];
-				bzero(message, BUF_SIZE];
+				bzero(message, BUF_SIZE);
 				sprintf(message, SERVER_WELCOME, clientfd);
 				int ret = send(clientfd, message, BUF_SIZE, 0);
 				if(ret < 0){
