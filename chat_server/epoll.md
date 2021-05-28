@@ -68,7 +68,7 @@ typedef union epoll_data{
 **epoll event**
 <br>
 
- | 설명
+이벤트 | 설명
 | ----- | ---------- |
 EPOLLIN  | 수신할 데이터가 있다.
 EPOLLPRI  | 중요 데이터 발생
