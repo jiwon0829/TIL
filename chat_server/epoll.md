@@ -65,10 +65,10 @@ typedef union epoll_data{
 
 <br>
 
-**epoll events 필드 가능한 비트 마스크**
+**epoll event**
 <br>
 
-비트 | 설명
+ | 설명
 | ----- | ---------- |
 EPOLLIN  | 수신할 데이터가 있다.
 EPOLLPRI  | 중요 데이터 발생
@@ -98,7 +98,5 @@ timout | 설명
 -1 | 영원히 사건을 기다리는 blocking
 0 | 사건이 있건 없건 조사만하고 즉시 리턴
       
-
-EPOLLHUP | X | O | 행업 발생
   
 <br><br>
