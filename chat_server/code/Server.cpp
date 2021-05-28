@@ -32,7 +32,7 @@ void Server::Init(){
 
 
 	//대기상태로 만들기
-	int ret = listen(listener, 1);
+	int ret = listen(listener, 5);
 	if(ret < 0){
 		perror("listen error");
 		exit(-1);
