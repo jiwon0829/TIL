@@ -18,6 +18,8 @@
  int epoll_create(int size);
  ```
 
+<br>
+
 성공하면 파일 디스크립터를 리턴하고, 에러가 발생하면 -1을 리턴<br>
 매개변수 size에는 감시할 파일 디스크립터의 수를 명시한다.
  
@@ -33,7 +35,10 @@ epoll에 fd들을 등록/수정/삭제하는 함수
 int epoll_ctl(int epfd, int op, int fd, struct epoll_event *ev);
 ```
 
+<br>
+
 성공하면 0을 리턴하고, 에러가 발생하면 -1을 리턴<br>
+<br>
 **op 매개변수**
 op | 설명 | 에러
 | ------- | ---------- | ----- |
@@ -41,6 +46,7 @@ EPOLL_CTL_ADD | 관심있는 파일디스크립터를 추가 | EEXIST : 이미 �
 EPOLL_CTL_MOD | 기존 파일 디스크립터를 수정 | ENOENT : 관심 목록에 없는 fd를 수정하려할때 발생
 EPOLL_CTL_DEL | 기존 파일 디스크립터를 관심 목록에서 삭제 | ENOENT : epfd 관심목록에 없는 fd를 제거하려할 때 발생
       
+<br>
 epoll_event 구조체<br>
       
 ```cpp
@@ -56,7 +62,24 @@ typedef union epoll_data{
 	uint64_t u64;
 }epoll_data_t;
 ```
-      
+
+<br>
+
+**epoll event**
+<br>
+
+이벤트 | 설명
+| ----- | ---------- |
+EPOLLIN  | 수신할 데이터가 있다.
+EPOLLPRI  | 중요 데이터 발생
+EPOLLRDHUP | 연결 종료 또눈 Half-close 발생
+EPOLLOUT  | 송신 가능
+EPOLLET  | 에지 트리거를 알림 방식으로 선택 (기본은 레벨트리거)
+EPOLLONESHOT  | 한번만 이벤트를 
+EPOLLERR  | 에러가 발생함  
+
+<br>
+
 ### epoll_wait()
 관심있는 fd들에 무슨 일이 일어났는지 조사하여 발생한 사건들의 개수를 리턴하는 함수<br>
 
@@ -75,16 +98,5 @@ timout | 설명
 -1 | 영원히 사건을 기다리는 blocking
 0 | 사건이 있건 없건 조사만하고 즉시 리턴
       
-epoll events 필드 가능한 비트 마스크 
-비트 | 입력 | 리턴 | 설명
-| ----- | --- | --- | ---------- |
-EPOLLIN | O | O | 높은 순위 데이터를 제외한 데이터를 읽을 수 있다.
-EPOLLPRI | O | O | 높은 순위 데이터를 읽을 수 있다.
-EPOLLRDHUP | O | O | 상대편 소켓 shutdown 확인
-EPOLLOUT | O | O | 일반 데이터를 기록할 수 있다.
-EPOLLET | O | X | 에지 트리거를 알림 방식으로 선택 (기본은 레벨트리거)
-EPOLLONESHOT | O | X | 이벤트를 알린 후에 이벤트 감시를 비활성화
-EPOLLERR | X | O | 에러가 발생함
-EPOLLHUP | X | O | 행업 발생
   
 <br><br>
