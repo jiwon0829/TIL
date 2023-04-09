@@ -17,3 +17,5 @@ visited[] 빠른 초기화
 memset(visited, false, sizeof(visited));
 ```
 <br><br>
+최단경로 구하는 문제 => BFS
+<br><br>
