@@ -1,19 +1,17 @@
-#include <iostream>
 #include <cstdio>
 #include <cstring>
-using namespace std;
 
 int main()
-{ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-    int a, b, c, start, end;
+{
+    int money[4], start, end;
     int cnt[101];
     int max_time=0, ans = 0;
     
     memset(cnt, 0, sizeof(cnt));
-    cin>>a>>b>>c;
+    scanf("%d %d %d",money+1, money+2, money+3);
     
     for(int i=0;i<3;i++){
-        cin>>start>>end;
+        scanf("%d %d", &start, &end);
         if (max_time < end)
             max_time = end;
         for(int t=start;t<end;t++)
@@ -21,13 +19,9 @@ int main()
     }
     
     for(int i=1;i<=max_time;i++){
-        if (cnt[i] == 3)
-            ans += c * 3;
-        else if (cnt[i] == 2)
-            ans += b * 2;
-        else if (cnt[i] == 1)
-            ans += a;
+        if (cnt[i])
+            ans += money[cnt[i]] * cnt[i];
     }
-    cout<<ans<<'\n';
+    printf("%d\n", ans);
 }
 
